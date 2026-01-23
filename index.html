@@ -28,7 +28,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top glass-nav">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Aberfoyle Inn</a>
+            <a class="navbar-brand fw-bold" href="#"> <img class="logo" src="./images/Logo.png" alt="logo" srcset=""></a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -36,8 +36,9 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#rooms">Rooms</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Dining</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Experiences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experiences">Experiences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bistro">Bistro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     <li class="nav-item">
                         <a class="btn btn-book ms-lg-3" href="#">Book Now</a>
                     </li>
@@ -194,7 +195,7 @@
                         </div>
 
                         <div class="lower-link-box text-center mt-4">
-                            <a href="./about/about.html" class="theme-btn btn-style-two clearfix mx-auto">
+                            <a href="./aboutus.html" class="theme-btn btn-style-two clearfix mx-auto">
                                 <span class="btn-wrap">
                                     <span class="btn btn-primary">About us</span>
 
@@ -380,7 +381,7 @@
 
 
     <!-- EXPERIENCES -->
-    <section class="section bg-green">
+    <section id="experiences" class="section bg-green">
         <div class="container text-center text-white">
             <h2 class="section-title text-white">Experiences</h2>
             <p class="mb-5">Explore the beauty of the Scottish Highlands</p>
@@ -412,6 +413,58 @@
             </div>
         </div>
     </section>
+
+    
+    <section id="bistro" class="bistro-section">
+  <div class="bistro-container">
+
+    <!-- LEFT CONTENT -->
+    <div class="bistro-content">
+      <span class="bistro-badge">Scottish Bistro Experience</span>
+
+      <h2>
+        Join Us at <span>the Bistro</span>
+      </h2>
+
+      <p class="lead">
+        For lunch or an evening meal in relaxed, pleasant surroundings,
+        our bistro is the perfect place to unwind and enjoy great food.
+      </p>
+
+      <p>
+        Step inside and experience the warm Scottish hospitality we’re known for —
+        friendly faces, comforting dishes, and an atmosphere that makes you feel right at home.
+      </p>
+
+      <p>
+        We also offer a carefully selected range of <strong>craft beers and ales</strong>,
+        including unique local brews you won’t find anywhere else nearby.
+      </p>
+
+      <p class="highlight-text">
+        So next time you’re passing by, drop in and see us.
+        You won’t be disappointed — and you might just be pleasantly surprised.
+      </p>
+
+      <a href="#contact" class="bistro-btn">Reserve a Table</a>
+    </div>
+
+    <!-- RIGHT IMAGES -->
+    <div class="bistro-images">
+      <div class="img-card">
+        <img src="./images/bistro-two.jpg" alt="Warm Scottish bistro interior">
+      </div>
+      <div class="img-card">
+        <img src="./images/bistro-one.jpg" alt="Scottish craft beers and ales">
+      </div>
+      <div class="img-card">
+        <img src="./images/hero-one.jpg" alt="Scottish hospitality dining experience">
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
     <!-- GO APE SECTION -->
     <section class="go-ape-section py-5">
@@ -565,7 +618,7 @@
 
 
     <!-- CONTACT SECTION -->
-    <section class="contact-section position-relative">
+    <section id="contact" class="contact-section position-relative">
         <!-- Animated Background -->
         <div class="animated-bg"></div>
 

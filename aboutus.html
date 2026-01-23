@@ -12,9 +12,32 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
   <link rel="stylesheet" href="./webapps/css/about.css">
+  <link rel="stylesheet" href="./webapps/css/style.css">
 </head>
 
 <body>
+
+      <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Aberfoyle Inn</a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#rooms">Rooms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experiences">Experiences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bistro">Bistro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="btn btn-book ms-lg-3" href="#">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 <section class="about-hero">
   <div class="about-hero-overlay"></div>
@@ -88,7 +111,7 @@
       <!-- IMAGE -->
       <div class="col-lg-6">
         <div class="about-image">
-          <img src="images/about.jpg" alt="Aberfoyle Inn Scotland">
+          <img src="./images/hero-one.jpg" alt="Aberfoyle Inn Scotland">
         </div>
       </div>
 
@@ -96,6 +119,97 @@
 
   </div>
 </section>
+
+ <!-- FOOTER -->
+    <footer class="aber-footer">
+        <div class="container">
+            <div class="row gy-5">
+
+                <!-- ABOUT -->
+                <div class="col-lg-4">
+                    <h4 class="footer-title">Aberfoyle Inn</h4>
+                    <p class="footer-text">
+                        A warm & welcoming Scottish inn in the heart of
+                        <strong>Loch Lomond & The Trossachs National Park</strong>.
+                        Your perfect base for adventure, relaxation & unforgettable stays.
+                    </p>
+
+                    <div class="footer-social">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-google"></i></a>
+                        <a href="#"><i class="bi bi-tripadvisor"></i></a>
+                    </div>
+                </div>
+
+                <!-- QUICK LINKS -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title-sm">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Rooms & Rates</a></li>
+                        <li><a href="#">Dining & Bar</a></li>
+                        <li><a href="#">Things To Do</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- EXPERIENCES -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title-sm">Experiences</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Go Ape Aberfoyle</a></li>
+                        <li><a href="#">Loch Lomond</a></li>
+                        <li><a href="#">Forest Walks</a></li>
+                        <li><a href="#">Hiking & Cycling</a></li>
+                        <li><a href="#">Wildlife Watching</a></li>
+                    </ul>
+                </div>
+
+                <!-- CONTACT -->
+                <div class="col-lg-4">
+                    <h5 class="footer-title-sm">Contact Us</h5>
+
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            16 Main Street, Aberfoyle,<br>
+                            Stirling, FK8 3UG, Scotland
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone-fill"></i>
+                            <a href="tel:+441877382573">+44 1877 382573</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope-fill"></i>
+                            <a href="mailto:bookings@aberfoyleinn.com">
+                                bookings@aberfoyleinn.com
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BOTTOM BAR -->
+        <div class="footer-bottom">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="mb-2 mb-md-0">
+                    © 2025 Aberfoyle Inn. All Rights Reserved.
+                </p>
+                <p class="mb-0">
+                    Designed with ❤️ by
+                    <a href="https://azenix.co.uk" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        Azenix
+                    </a>
+                </p>
+            </div>
+        </div>
+
+    </footer>
 
 
 </body>
