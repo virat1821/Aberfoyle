@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Book Your Stay | Aberfoyle Inn</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./webapps/css/style.css">
+
+<style>
+:root {
+  --green: #1f4f3b;
+  --blue: #1fa2ff;
+  --gold: #cfa670;
+  --bg:#0b1220;
+  --card:rgba(255,255,255,0.06);
+  --accent:#c9a24d;
+  --accent-soft:#e4c97a;
+  --secondary:#3a4f7a;
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #0b1220, #0f1a2e);
+  color: var(--text);
+}
+
+/* ---------- CONTAINER ---------- */
+.booking-wrapper {
+  /* max-width: 1100px; */
+  margin: auto;
+  padding: 180px 20px;
+  background: radial-gradient(circle at 20% 20%, rgba(201, 162, 77, 0.12), transparent 40%), linear-gradient(135deg, rgba(11, 18, 32, 0.95), rgba(11, 18, 32, 0.75));
+}
+
+/* ---------- HEADER ---------- */
+.booking-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.booking-header h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.booking-header span {
+  color: var(--accent);
+}
+
+.booking-header p {
+  color: var(--muted);
+  font-size: 18px;
+}
+
+/* ---------- CARD ---------- */
+.booking-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  backdrop-filter: blur(14px);
+}
+
+/* ---------- FORM ---------- */
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.booking-form label {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  font-size: 15px;
+}
+
+.booking-form input:focus,
+.booking-form select:focus,
+.booking-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(201,162,77,0.2);
+}
+
+.full {
+  grid-column: span 2;
+}
+
+/* ---------- BUTTON ---------- */
+.book-btn {
+  grid-column: span 2;
+  margin-top: 10px;
+}
+
+.book-btn button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--gold));
+  color: #0b1220;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.book-btn button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(201,162,77,0.35);
+}
+
+/* ---------- INFO STRIP ---------- */
+.info-strip {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .booking-form {
+    grid-template-columns: 1fr;
+  }
+  .full,
+  .book-btn {
+    grid-column: span 1;
+  }
+}
+
+/* FIX DROPDOWN TEXT VISIBILITY */
+.booking-form select {
+  color: var(--text);
+  background-color: rgba(255,255,255,0.06);
+}
+
+/* IMPORTANT: option styles */
+.booking-form select option {
+  color: #0b1220;          /* dark text */
+  background: #ffffff;    /* white background */
+}
+
+</style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#"> <img class="logo" src="./images/Logo.png" alt="logo" srcset=""></a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./index.html#rooms">Rooms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./index.html#experiences">Experiences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./index.html#bistro">Bistro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./index.html#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="btn btn-book ms-lg-3" href="#">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>    
+
+<section class="booking-wrapper">
+  <div class="container">
+  <div class="booking-header">
+    <h1>Book Your <span>Stay</span></h1>
+    <p>Comfort, calm and countryside charm at Aberfoyle Inn</p>
+  </div>
+
+  <div class="booking-card">
+    <form class="booking-form">
+
+      <div>
+        <label>Full Name</label>
+        <input type="text" placeholder="Your name" required>
+      </div>
+
+      <div>
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com" required>
+      </div>
+
+      <div>
+        <label>Check-in Date</label>
+        <input type="date" required>
+      </div>
+
+      <div>
+        <label>Check-out Date</label>
+        <input type="date" required>
+      </div>
+
+      <div>
+        <label>Guests</label>
+        <select>
+          <option>1 Guest</option>
+          <option>2 Guests</option>
+          <option>3 Guests</option>
+          <option>4 Guests</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Room Type</label>
+        <select>
+          <option>Standard Room</option>
+          <option>Deluxe Room</option>
+          <option>Family Room</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <label>Special Requests</label>
+        <textarea rows="4" placeholder="Any special requirements..."></textarea>
+      </div>
+
+      <div class="book-btn">
+        <button type="submit">Confirm Booking</button>
+      </div>
+
+    </form>
+
+    <div class="info-strip">
+      <div>✔ Free Cancellation</div>
+      <div>✔ Best Price Guaranteed</div>
+      <div>✔ Secure Booking</div>
+    </div>
+  </div>
+  </div>
+
+
+</section>
+
+
+ <!-- FOOTER -->
+    <footer class="aber-footer">
+        <div class="container">
+            <div class="row gy-5">
+
+                <!-- ABOUT -->
+                <div class="col-lg-4">
+                    <h4 class="footer-title">Aberfoyle Inn</h4>
+                    <p class="footer-text">
+                        A warm & welcoming Scottish inn in the heart of
+                        <strong>Loch Lomond & The Trossachs National Park</strong>.
+                        Your perfect base for adventure, relaxation & unforgettable stays.
+                    </p>
+
+                    <div class="footer-social">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-google"></i></a>
+                        <a href="#"><i class="bi bi-tripadvisor"></i></a>
+                    </div>
+                </div>
+
+                <!-- QUICK LINKS -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title-sm">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Rooms & Rates</a></li>
+                        <li><a href="#">Dining & Bar</a></li>
+                        <li><a href="#">Things To Do</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- EXPERIENCES -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title-sm">Experiences</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Go Ape Aberfoyle</a></li>
+                        <li><a href="#">Loch Lomond</a></li>
+                        <li><a href="#">Forest Walks</a></li>
+                        <li><a href="#">Hiking & Cycling</a></li>
+                        <li><a href="#">Wildlife Watching</a></li>
+                    </ul>
+                </div>
+
+                <!-- CONTACT -->
+                <div class="col-lg-4">
+                    <h5 class="footer-title-sm">Contact Us</h5>
+
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            16 Main Street, Aberfoyle,<br>
+                            Stirling, FK8 3UG, Scotland
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone-fill"></i>
+                            <a href="tel:+441877382573">+44 1877 382573</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope-fill"></i>
+                            <a href="mailto:bookings@aberfoyleinn.com">
+                                bookings@aberfoyleinn.com
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BOTTOM BAR -->
+        <div class="footer-bottom">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="mb-2 mb-md-0">
+                    © 2025 Aberfoyle Inn. All Rights Reserved.
+                </p>
+                <p class="mb-0">
+                    Designed with ❤️ by
+                    <a href="https://azenix.co.uk" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        Azenix
+                    </a>
+                </p>
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+</html>
