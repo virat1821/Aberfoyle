@@ -16,6 +16,13 @@ body {
   background: var(--bg);
   color: var(--text);
 }
+/* Body text */
+ h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif !important;
+  }
+  body, p, a {
+    font-family: 'Inter', sans-serif !important;
+  }
 
 /* =========================
    MODERN HERO SECTION
