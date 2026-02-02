@@ -650,10 +650,10 @@ body{
   overflow: hidden;
 }
 
-.section-title {
+/* .section-title {
   font-size: 2.6rem;
   font-weight: 800;
-}
+} */
 
 .section-title span {
   background: linear-gradient(90deg, #00ffcc, #00c3ff);
@@ -1666,7 +1666,7 @@ body.dark {
 }
 
 .about-section .title-box h2 {
-    font-size: 70px;
+    /* font-size: 70px; */
     /* font-family: 'DM Serif Display', serif; */
 }
 
@@ -2269,7 +2269,7 @@ body.dark {
 
 .review-user h5 {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -2294,9 +2294,10 @@ body.dark {
 ========================= */
 
 .review-card p {
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
   line-height: 1.6;
   color: var(--muted);
+  margin-bottom: 0px !important;
 }
 
 /* =========================
