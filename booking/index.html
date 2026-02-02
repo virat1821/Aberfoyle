@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hotel Booking</title>
+  <link rel="stylesheet" href="./webapp/css/style.css" />
+</head>
+<body>
+
+<section class="rooms">
+
+  <!-- TWIN ROOM -->
+  <div class="room-card">
+    <h2>TWIN ROOM</h2>
+    <div class="price">£99 <span>per night</span></div>
+    <div class="availability">Available: <strong>5</strong></div>
+    <button onclick="bookRoom('Twin Room')">CLICK TO BOOK</button>
+  </div>
+
+  <!-- DOUBLE ROOM -->
+  <div class="room-card featured">
+    <h2>DOUBLE ROOM</h2>
+    <div class="price">£105 <span>per night</span></div>
+    <div class="availability">Available: <strong>3</strong></div>
+    <button onclick="bookRoom('Double Room')">CLICK TO BOOK</button>
+  </div>
+
+  <!-- FAMILY ROOM -->
+  <div class="room-card">
+    <h2>FAMILY ROOM</h2>
+    <div class="price">£115 <span>per room</span></div>
+    <div class="availability">Available: <strong>4</strong></div>
+    <button onclick="bookRoom('Family Room')">CLICK TO BOOK</button>
+  </div>
+
+</section>
+
+<script src="script.js"></script>
+
+<script>
+    function bookRoom(roomType) {
+  alert("Booking started for: " + roomType);
+
+  // Later:
+  // 1. Redirect to booking page
+  // 2. Pass roomType, dates
+  // 3. Call Firebase function
+  // 4. Redirect to Stripe checkout
+}
+</script>
+
+</body>
+</html>
