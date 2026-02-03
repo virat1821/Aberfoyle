@@ -2504,11 +2504,15 @@ body.dark {
 }
 
 
+
+
+
+
 .write-review-btn {
   background: var(--accent);
   color: var(--bg);
   border: none;
-  padding: 12px 26px;
+  padding: 12px 28px;
   border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
@@ -2536,6 +2540,6 @@ body.dark {
 .review-box select,
 .review-box textarea {
   width: 100%;
-  margin-bottom: 14px;
   padding: 10px;
+  margin-bottom: 14px;
 }

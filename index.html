@@ -703,8 +703,8 @@
             </div>
 
             <button class="write-review-btn" onclick="openReviewForm()">
-                Write Your Review
-            </button>
+  Write Your Review
+</button>
 
               
         </div>
@@ -981,32 +981,30 @@
     </footer>
 
 
-    <div class="review-modal" id="reviewModal">
+     <div class="review-modal" id="reviewModal">
   <div class="review-box">
-
     <h3>Write a Review</h3>
 
-    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="text" id="reviewName" placeholder="Your Name" required>
 
-    <select id="gender">
+    <select id="reviewGender">
       <option value="male">Male</option>
       <option value="female">Female</option>
     </select>
 
-    <select id="rating">
+    <select id="reviewRating">
       <option value="5">★★★★★</option>
       <option value="4">★★★★☆</option>
       <option value="3">★★★☆☆</option>
     </select>
 
-    <textarea id="message" placeholder="Your review..." required></textarea>
+    <textarea id="reviewMessage" placeholder="Your review..." required></textarea>
 
     <button onclick="submitReview()">Submit Review</button>
 
     <p class="review-note">
       Your review will be published within 24 hours.
     </p>
-
   </div>
 </div>
 
@@ -1235,78 +1233,98 @@
 
 
 
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
 
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyDHtMsT38V2SkENrL_KprEZaG6YHrPNO6M",
-            authDomain: "aberfoyle-inn-reviews.firebaseapp.com",
-            projectId: "aberfoyle-inn-reviews",
-            storageBucket: "aberfoyle-inn-reviews.firebasestorage.app",
-            messagingSenderId: "139125989360",
-            appId: "1:139125989360:web:4d6bf5a9e1671134364735",
-            measurementId: "G-TQ0Z7XYSVP"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-    </script>
-
-    <script>
+<script>
 function openReviewForm() {
   document.getElementById("reviewModal").style.display = "flex";
 }
 
 async function submitReview() {
-  const name = document.getElementById("name").value;
-  const gender = document.getElementById("gender").value;
-  const rating = document.getElementById("rating").value;
-  const message = document.getElementById("message").value;
+  try {
+    const name = document.getElementById("reviewName").value;
+    const gender = document.getElementById("reviewGender").value;
+    const rating = document.getElementById("reviewRating").value;
+    const message = document.getElementById("reviewMessage").value;
 
-  if (!name || !message) return alert("Please fill all fields");
+    if (!name || !message) {
+      alert("Please fill all fields");
+      return;
+    }
 
-  await addDoc(collection(db, "reviews"), {
-    name,
-    gender,
-    rating,
-    message,
-    status: "pending",
-    createdAt: new Date()
-  });
+    await addDoc(collection(db, "reviews"), {
+      name,
+      gender,
+      rating: Number(rating),
+      message,
+      status: "pending",
+      createdAt: new Date()
+    });
 
-  alert("Thank you! Your review will be published within 24 hours.");
+    alert("Thank you! Your review will be published within 24 hours.");
+    document.getElementById("reviewModal").style.display = "none";
 
-  document.getElementById("reviewModal").style.display = "none";
-}
-</script>
-
-<script>
-    async function loadReviews() {
-  const q = query(
-    collection(db, "reviews"),
-    where("status", "==", "approved")
-  );
-
-  const snapshot = await getDocs(q);
-
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    console.log(data.name, data.message);
-    // here you append to review slider
-  });
+  } catch (error) {
+    console.error("Submit error:", error);
+    alert("Error submitting review. Check console.");
+  }
 }
 
-loadReviews();
+async function loadReviews() {
+  try {
+    const q = query(
+      collection(db, "reviews"),
+      where("status", "==", "approved")
+    );
 
+    const snapshot = await getDocs(q);
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      console.log("Approved review:", data.name, data.message);
+      // append to slider here
+    });
+
+  } catch (err) {
+    console.error("Load reviews error:", err);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadReviews);
 </script>
 
+
+
+
+
+    <!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, where } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  // 🔥 YOUR FIREBASE CONFIG
+  const firebaseConfig = {
+    apiKey: "AIzaSyDHtMsT38V2SkENrL_KprEZaG6YHrPNO6M",
+    authDomain: "aberfoyle-inn-reviews.firebaseapp.com",
+    projectId: "aberfoyle-inn-reviews",
+    storageBucket: "aberfoyle-inn-reviews.firebasestorage.app",
+    messagingSenderId: "139125989360",
+    appId: "1:139125989360:web:4d6bf5a9e1671134364735",
+    measurementId: "G-TQ0Z7XYSVP"
+  };
+
+  // INIT
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // 👇 EXPOSE TO GLOBAL (VERY IMPORTANT)
+  window.db = db;
+  window.addDoc = addDoc;
+  window.collection = collection;
+  window.getDocs = getDocs;
+  window.query = query;
+  window.where = where;
+</script>
 
 
 </body>
