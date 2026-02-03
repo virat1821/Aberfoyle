@@ -702,11 +702,11 @@
 
             </div>
 
-            <button class="write-review-btn" onclick="openReviewForm()">
-  Write Your Review
-</button>
+            <button class="write-review-btn mt-2" onclick="openReviewForm()">
+                Write Your Review
+            </button>
 
-              
+
         </div>
     </section>
     <!-- review end -->
@@ -981,8 +981,14 @@
     </footer>
 
 
-     <div class="review-modal" id="reviewModal">
+    <div class="review-modal" id="reviewModal">
   <div class="review-box">
+
+    <!-- CLOSE ICON -->
+    <button class="review-close" onclick="closeReviewForm()">
+      &times;
+    </button>
+
     <h3>Write a Review</h3>
 
     <input type="text" id="reviewName" placeholder="Your Name" required>
@@ -1000,13 +1006,15 @@
 
     <textarea id="reviewMessage" placeholder="Your review..." required></textarea>
 
-    <button onclick="submitReview()">Submit Review</button>
+    <button class="btn btn-primary" onclick="submitReview()">Submit Review</button>
 
-    <p class="review-note">
+    <p class="review-note mt-2">
       Your review will be published within 24 hours.
     </p>
+
   </div>
 </div>
+
 
 
 
@@ -1234,97 +1242,102 @@
 
 
 
+    <script>
+        function openReviewForm() {
+            document.getElementById("reviewModal").style.display = "flex";
+        }
+
+        async function submitReview() {
+            try {
+                const name = document.getElementById("reviewName").value;
+                const gender = document.getElementById("reviewGender").value;
+                const rating = document.getElementById("reviewRating").value;
+                const message = document.getElementById("reviewMessage").value;
+
+                if (!name || !message) {
+                    alert("Please fill all fields");
+                    return;
+                }
+
+                await addDoc(collection(db, "reviews"), {
+                    name,
+                    gender,
+                    rating: Number(rating),
+                    message,
+                    status: "pending",
+                    createdAt: new Date()
+                });
+
+                alert("Thank you! Your review will be published within 24 hours.");
+                document.getElementById("reviewModal").style.display = "none";
+
+            } catch (error) {
+                console.error("Submit error:", error);
+                alert("Error submitting review. Check console.");
+            }
+        }
+
+        async function loadReviews() {
+            try {
+                const q = query(
+                    collection(db, "reviews"),
+                    where("status", "==", "approved")
+                );
+
+                const snapshot = await getDocs(q);
+
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    console.log("Approved review:", data.name, data.message);
+                    // append to slider here
+                });
+
+            } catch (err) {
+                console.error("Load reviews error:", err);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadReviews);
+    </script>
+
+
 <script>
-function openReviewForm() {
-  document.getElementById("reviewModal").style.display = "flex";
+function closeReviewForm() {
+  document.getElementById("reviewModal").style.display = "none";
 }
-
-async function submitReview() {
-  try {
-    const name = document.getElementById("reviewName").value;
-    const gender = document.getElementById("reviewGender").value;
-    const rating = document.getElementById("reviewRating").value;
-    const message = document.getElementById("reviewMessage").value;
-
-    if (!name || !message) {
-      alert("Please fill all fields");
-      return;
-    }
-
-    await addDoc(collection(db, "reviews"), {
-      name,
-      gender,
-      rating: Number(rating),
-      message,
-      status: "pending",
-      createdAt: new Date()
-    });
-
-    alert("Thank you! Your review will be published within 24 hours.");
-    document.getElementById("reviewModal").style.display = "none";
-
-  } catch (error) {
-    console.error("Submit error:", error);
-    alert("Error submitting review. Check console.");
-  }
-}
-
-async function loadReviews() {
-  try {
-    const q = query(
-      collection(db, "reviews"),
-      where("status", "==", "approved")
-    );
-
-    const snapshot = await getDocs(q);
-
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      console.log("Approved review:", data.name, data.message);
-      // append to slider here
-    });
-
-  } catch (err) {
-    console.error("Load reviews error:", err);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", loadReviews);
 </script>
-
-
 
 
 
     <!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs, query, where } 
-    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where }
+            from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  // 🔥 YOUR FIREBASE CONFIG
-  const firebaseConfig = {
-    apiKey: "AIzaSyDHtMsT38V2SkENrL_KprEZaG6YHrPNO6M",
-    authDomain: "aberfoyle-inn-reviews.firebaseapp.com",
-    projectId: "aberfoyle-inn-reviews",
-    storageBucket: "aberfoyle-inn-reviews.firebasestorage.app",
-    messagingSenderId: "139125989360",
-    appId: "1:139125989360:web:4d6bf5a9e1671134364735",
-    measurementId: "G-TQ0Z7XYSVP"
-  };
+        // 🔥 YOUR FIREBASE CONFIG
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHtMsT38V2SkENrL_KprEZaG6YHrPNO6M",
+            authDomain: "aberfoyle-inn-reviews.firebaseapp.com",
+            projectId: "aberfoyle-inn-reviews",
+            storageBucket: "aberfoyle-inn-reviews.firebasestorage.app",
+            messagingSenderId: "139125989360",
+            appId: "1:139125989360:web:4d6bf5a9e1671134364735",
+            measurementId: "G-TQ0Z7XYSVP"
+        };
 
-  // INIT
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+        // INIT
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-  // 👇 EXPOSE TO GLOBAL (VERY IMPORTANT)
-  window.db = db;
-  window.addDoc = addDoc;
-  window.collection = collection;
-  window.getDocs = getDocs;
-  window.query = query;
-  window.where = where;
-</script>
+        // 👇 EXPOSE TO GLOBAL (VERY IMPORTANT)
+        window.db = db;
+        window.addDoc = addDoc;
+        window.collection = collection;
+        window.getDocs = getDocs;
+        window.query = query;
+        window.where = where;
+    </script>
 
 
 </body>
