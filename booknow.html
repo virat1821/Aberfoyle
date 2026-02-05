@@ -240,6 +240,16 @@ body {
 </section>
 
 
+
+
+
+
+
+
+
+
+
+
 <section class="booking-wrapper">
   <div class="container">
   <div class="booking-header">
@@ -478,25 +488,28 @@ Special Requests: ${message || "None"}
 </script>
 
 <script>
+let selectedBooking = null;
+
 document
   .getElementById("availabilityForm")
   .addEventListener("submit", checkAvailability);
 
 async function checkAvailability(e) {
-  e.preventDefault(); // ⛔ stop page reload
-
-  console.log("✅ Check availability clicked");
+  e.preventDefault();
 
   const checkIn = document.getElementById("checkin").value;
   const checkOut = document.getElementById("checkout").value;
   const guests = Number(document.getElementById("guests").value);
   const roomType = document.getElementById("roomType").value;
+
   const result = document.getElementById("availabilityResult");
+  const bookBtn = document.getElementById("bookNowBtn");
 
   result.innerHTML = "Checking availability...";
+  bookBtn.style.display = "none";
 
   try {
-    // 1️⃣ Get inventory
+    // 🔹 INVENTORY
     const inventorySnap = await getDocs(collection(db, "room_inventory"));
 
     let totalRooms = 0;
@@ -510,7 +523,11 @@ async function checkAvailability(e) {
       }
     });
 
-    console.log("Inventory:", totalRooms, maxGuests);
+    if (!totalRooms) {
+      result.innerHTML = "⚠️ Room data not found";
+      result.style.color = "orange";
+      return;
+    }
 
     if (guests > maxGuests) {
       result.innerHTML = `❌ Max ${maxGuests} guests allowed for ${roomType}`;
@@ -518,7 +535,7 @@ async function checkAvailability(e) {
       return;
     }
 
-    // 2️⃣ Get bookings
+    // 🔹 BOOKINGS
     const bookingSnap = await getDocs(
       query(collection(db, "bookings"), where("roomType", "==", roomType))
     );
@@ -534,22 +551,34 @@ async function checkAvailability(e) {
 
     const available = totalRooms - bookedRooms;
 
-    // 3️⃣ Show result
     if (available > 0) {
       result.innerHTML = `✅ <strong>${available}</strong> ${roomType}(s) available`;
       result.style.color = "green";
+
+      // 👉 SAVE SELECTION FOR NEXT STEP
+      selectedBooking = {
+        roomType,
+        checkIn,
+        checkOut,
+        guests
+      };
+
+      // 👉 SHOW BOOK BUTTON
+      bookBtn.style.display = "inline-block";
+
     } else {
       result.innerHTML = `❌ No ${roomType} available for selected dates`;
       result.style.color = "red";
     }
 
   } catch (err) {
-    console.error("Availability error:", err);
-    result.innerHTML = "⚠️ Error checking availability. See console.";
+    console.error(err);
+    result.innerHTML = "⚠️ Error checking availability";
     result.style.color = "orange";
   }
 }
 </script>
+
 
 
 
