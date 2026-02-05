@@ -579,6 +579,15 @@ async function checkAvailability(e) {
 }
 </script>
 
+<script>
+document.getElementById("bookNowBtn").addEventListener("click", () => {
+  console.log("Booking ready:", selectedBooking);
+  alert(
+    `Proceeding to payment for:\n\n${selectedBooking.roomType}\n${selectedBooking.checkIn} → ${selectedBooking.checkOut}\nGuests: ${selectedBooking.guests}`
+  );
+});
+</script>
+
 
 
 
