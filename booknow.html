@@ -477,6 +477,80 @@ Special Requests: ${message || "None"}
   console.log("🔥 Firebase connected");
 </script>
 
+<script>
+document
+  .getElementById("availabilityForm")
+  .addEventListener("submit", checkAvailability);
+
+async function checkAvailability(e) {
+  e.preventDefault(); // ⛔ stop page reload
+
+  console.log("✅ Check availability clicked");
+
+  const checkIn = document.getElementById("checkin").value;
+  const checkOut = document.getElementById("checkout").value;
+  const guests = Number(document.getElementById("guests").value);
+  const roomType = document.getElementById("roomType").value;
+  const result = document.getElementById("availabilityResult");
+
+  result.innerHTML = "Checking availability...";
+
+  try {
+    // 1️⃣ Get inventory
+    const inventorySnap = await getDocs(collection(db, "room_inventory"));
+
+    let totalRooms = 0;
+    let maxGuests = 0;
+
+    inventorySnap.forEach(doc => {
+      const data = doc.data();
+      if (data.roomType === roomType) {
+        totalRooms = data.totalRooms;
+        maxGuests = data.maxGuests;
+      }
+    });
+
+    console.log("Inventory:", totalRooms, maxGuests);
+
+    if (guests > maxGuests) {
+      result.innerHTML = `❌ Max ${maxGuests} guests allowed for ${roomType}`;
+      result.style.color = "red";
+      return;
+    }
+
+    // 2️⃣ Get bookings
+    const bookingSnap = await getDocs(
+      query(collection(db, "bookings"), where("roomType", "==", roomType))
+    );
+
+    let bookedRooms = 0;
+
+    bookingSnap.forEach(doc => {
+      const b = doc.data();
+      if (checkIn < b.checkOut && checkOut > b.checkIn) {
+        bookedRooms += b.roomsBooked;
+      }
+    });
+
+    const available = totalRooms - bookedRooms;
+
+    // 3️⃣ Show result
+    if (available > 0) {
+      result.innerHTML = `✅ <strong>${available}</strong> ${roomType}(s) available`;
+      result.style.color = "green";
+    } else {
+      result.innerHTML = `❌ No ${roomType} available for selected dates`;
+      result.style.color = "red";
+    }
+
+  } catch (err) {
+    console.error("Availability error:", err);
+    result.innerHTML = "⚠️ Error checking availability. See console.";
+    result.style.color = "orange";
+  }
+}
+</script>
+
 
 
 </body>
