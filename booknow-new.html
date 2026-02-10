@@ -22,6 +22,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="./webapps/css/style.css">
+    <link rel="stylesheet" href="./webapps/css/booking.css">
 
 <style>
 :root {
@@ -206,7 +207,52 @@ body {
                 </ul>
             </div>
         </div>
-    </nav>    
+    </nav>   
+    
+    
+    <section class="availability-section">
+  <h2>Check Availability</h2>
+
+  <form id="availabilityForm">
+    <input type="date" id="checkin" required>
+    <input type="date" id="checkout" required>
+
+    <select id="guests">
+      <option value="1">1 Guest</option>
+      <option value="2">2 Guests</option>
+      <option value="3">3 Guests</option>
+    </select>
+
+    <select id="roomType">
+      <option value="Double Room">Double Room (Sleeps 2)</option>
+      <option value="Twin Room">Twin Room (Sleeps 2)</option>
+      <option value="Family Room">Family Room (Sleeps 3)</option>
+    </select>
+
+    <button type="submit">Check Availability</button>
+  </form>
+
+  <div id="availabilityResult"></div>
+
+<button
+  id="bookNowBtn"
+  style="display:none; margin-top:12px;"
+  class="btn btn-primary"
+>
+  Book Now & Pay 30% Deposit
+</button>
+</section>
+
+
+
+
+
+
+
+
+
+
+
 
 <section class="booking-wrapper">
   <div class="container">
@@ -216,61 +262,62 @@ body {
   </div>
 
   <div class="booking-card">
-    <form class="booking-form">
+     <form class="booking-form" onsubmit="sendToWhatsApp(event)">
 
-      <div>
-        <label>Full Name</label>
-        <input type="text" placeholder="Your name" required>
-      </div>
+  <div>
+    <label>Full Name</label>
+    <input type="text" id="name" placeholder="Your name" required>
+  </div>
 
-      <div>
-        <label>Email Address</label>
-        <input type="email" placeholder="you@example.com" required>
-      </div>
+  <div>
+    <label>Email Address</label>
+    <input type="email" id="email" placeholder="you@example.com" required>
+  </div>
 
-      <div>
-        <label>Check-in Date</label>
-        <input type="date" required>
-      </div>
+  <div>
+    <label>Check-in Date</label>
+    <input type="date" id="checkin" required>
+  </div>
 
-      <div>
-        <label>Check-out Date</label>
-        <input type="date" required>
-      </div>
+  <div>
+    <label>Check-out Date</label>
+    <input type="date" id="checkout" required>
+  </div>
 
-      <div>
-        <label>Guests</label>
-        <select>
-          <option>1 Guest</option>
-          <option>2 Guests</option>
-          <option>3 Guests</option>
-          <option>4 Guests</option>
-           <option>5 Guest</option>
-          <option>6 Guests</option>
-          <option>7 Guests</option>
-          <option>8+ Guests</option>
-        </select>
-      </div>
+  <div>
+    <label>Guests</label>
+    <select id="guests">
+      <option>1 Guest</option>
+      <option>2 Guests</option>
+      <option>3 Guests</option>
+      <option>4 Guests</option>
+      <option>5 Guests</option>
+      <option>6 Guests</option>
+      <option>7 Guests</option>
+      <option>8+ Guests</option>
+    </select>
+  </div>
 
-      <div>
-        <label>Room Type</label>
-        <select>
-          <option>Standard Room</option>
-          <option>Deluxe Room</option>
-          <option>Family Room</option>
-        </select>
-      </div>
+  <div>
+    <label>Room Type</label>
+    <select id="room">
+      <option>Standard Room</option>
+      <option>Deluxe Room</option>
+      <option>Family Room</option>
+    </select>
+  </div>
 
-      <div class="full">
-        <label>Special Requests</label>
-        <textarea rows="4" placeholder="Any special requirements..."></textarea>
-      </div>
+  <div class="full">
+    <label>Special Requests</label>
+    <textarea id="message" rows="4" placeholder="Any special requirements..."></textarea>
+  </div>
 
-      <div class="book-btn">
-        <button type="submit">Confirm Booking</button>
-      </div>
+  <div class="book-btn">
+    <button type="submit">Confirm Booking</button>
+  </div>
 
-    </form>
+</form>
+
 
     <div class="info-strip">
       <div>✔ Free Cancellation</div>
@@ -372,6 +419,181 @@ body {
         </div>
 
     </footer>
+
+
+    <script>
+function sendToWhatsApp(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const checkin = document.getElementById("checkin").value;
+  const checkout = document.getElementById("checkout").value;
+  const guests = document.getElementById("guests").value;
+  const room = document.getElementById("room").value;
+  const message = document.getElementById("message").value;
+
+  const phoneNumber = "8848883130"; 
+  // 👆 REPLACE with your WhatsApp number (UK format, no +)
+
+  const text = `
+Hello Aberfoyle Inn 👋
+
+I would like to make a booking.
+
+Name: ${name}
+Email: ${email}
+Check-in: ${checkin}
+Check-out: ${checkout}
+Guests: ${guests}
+Room Type: ${room}
+Special Requests: ${message || "None"}
+`;
+
+  const encodedText = encodeURIComponent(text);
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+
+  window.open(whatsappURL, "_blank");
+}
+</script>
+
+
+
+
+
+
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, where }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD4tq8K8uE_8pYUjML40CCbSgelfZ5498o",
+  authDomain: "aberfoyle-inn.firebaseapp.com",
+  projectId: "aberfoyle-inn",
+  storageBucket: "aberfoyle-inn.firebasestorage.app",
+  messagingSenderId: "34743961610",
+  appId: "1:34743961610:web:5f0a701bd95d6ab790f7f3",
+  measurementId: "G-CVB2CC4Y67"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // expose globally
+  window.db = db;
+  window.collection = collection;
+  window.getDocs = getDocs;
+  window.query = query;
+  window.where = where;
+
+  console.log("🔥 Firebase connected");
+</script>
+
+<script>
+let selectedBooking = null;
+
+document
+  .getElementById("availabilityForm")
+  .addEventListener("submit", checkAvailability);
+
+async function checkAvailability(e) {
+  e.preventDefault();
+
+  const checkIn = document.getElementById("checkin").value;
+  const checkOut = document.getElementById("checkout").value;
+  const guests = Number(document.getElementById("guests").value);
+  const roomType = document.getElementById("roomType").value;
+
+  const result = document.getElementById("availabilityResult");
+  const bookBtn = document.getElementById("bookNowBtn");
+
+  result.innerHTML = "Checking availability...";
+  bookBtn.style.display = "none";
+
+  try {
+    // 🔹 INVENTORY
+    const inventorySnap = await getDocs(collection(db, "room_inventory"));
+
+    let totalRooms = 0;
+    let maxGuests = 0;
+
+    inventorySnap.forEach(doc => {
+      const data = doc.data();
+      if (data.roomType === roomType) {
+        totalRooms = data.totalRooms;
+        maxGuests = data.maxGuests;
+      }
+    });
+
+    if (!totalRooms) {
+      result.innerHTML = "⚠️ Room data not found";
+      result.style.color = "orange";
+      return;
+    }
+
+    if (guests > maxGuests) {
+      result.innerHTML = `❌ Max ${maxGuests} guests allowed for ${roomType}`;
+      result.style.color = "red";
+      return;
+    }
+
+    // 🔹 BOOKINGS
+    const bookingSnap = await getDocs(
+      query(collection(db, "bookings"), where("roomType", "==", roomType))
+    );
+
+    let bookedRooms = 0;
+
+    bookingSnap.forEach(doc => {
+      const b = doc.data();
+      if (checkIn < b.checkOut && checkOut > b.checkIn) {
+        bookedRooms += b.roomsBooked;
+      }
+    });
+
+    const available = totalRooms - bookedRooms;
+
+    if (available > 0) {
+      result.innerHTML = `✅ <strong>${available}</strong> ${roomType}(s) available`;
+      result.style.color = "green";
+
+      // 👉 SAVE SELECTION FOR NEXT STEP
+      selectedBooking = {
+        roomType,
+        checkIn,
+        checkOut,
+        guests
+      };
+
+      // 👉 SHOW BOOK BUTTON
+      bookBtn.style.display = "inline-block";
+
+    } else {
+      result.innerHTML = `❌ No ${roomType} available for selected dates`;
+      result.style.color = "red";
+    }
+
+  } catch (err) {
+    console.error(err);
+    result.innerHTML = "⚠️ Error checking availability";
+    result.style.color = "orange";
+  }
+}
+</script>
+
+<script>
+document.getElementById("bookNowBtn").addEventListener("click", () => {
+  console.log("Booking ready:", selectedBooking);
+  alert(
+    `Proceeding to payment for:\n\n${selectedBooking.roomType}\n${selectedBooking.checkIn} → ${selectedBooking.checkOut}\nGuests: ${selectedBooking.guests}`
+  );
+});
+</script>
+
+
+
 
 </body>
 </html>
