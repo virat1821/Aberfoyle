@@ -6,7 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Bootstrap (optional, remove if not using elsewhere) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- Your main theme CSS -->
   <link rel="stylesheet" href="./webapps/css/style.css">
@@ -15,6 +31,29 @@
 
 
 <body>
+   <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#"> <img class="logo" src="./images/Logo.png" alt="logo"
+                    srcset=""></a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#rooms">Rooms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experiences">Experiences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bistro">Bistro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="btn btn-book ms-lg-3" href="./booknow.html">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 <!-- EXPERIENCE INTRO -->
 <section class="experience-intro">
@@ -47,7 +86,7 @@
       </div>
 
       <div class="intro-image">
-        <img src="images/go-ape-forest.jpg" alt="Go Ape Aberfoyle">
+        <img src="./images/zip-one.webp" alt="Go Ape Aberfoyle">
       </div>
 
     </div>
@@ -131,13 +170,104 @@
       await just minutes away.
     </p>
 
-    <a href="booking.html" class="stay-btn">
+    <a href="./booknow.html" class="stay-btn">
       Check Availability & Book
     </a>
 
   </div>
 </section>
 
+   <!-- FOOTER -->
+    <footer class="aber-footer">
+        <div class="container">
+            <div class="row gy-5">
+
+                <!-- ABOUT -->
+                <div class="col-lg-4">
+                    <h4 class="footer-title">Aberfoyle Inn</h4>
+                    <p class="footer-text">
+                        A warm & welcoming Scottish inn in the heart of
+                        <strong>Loch Lomond & The Trossachs National Park</strong>.
+                        Your perfect base for adventure, relaxation & unforgettable stays.
+                    </p>
+
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/share/167MVHhXAT/?mibextid=wwXIfr"><i
+                                class="bi bi-facebook"></i></a>
+                        <a
+                            href="https://www.instagram.com/the_aberfoyleinn?igsh=MWd5M3BmdDhlOWM5Mw%3D%3D&utm_source=qr"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-google"></i></a>
+
+                    </div>
+                </div>
+
+                <!-- QUICK LINKS -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title-sm">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./index.html#rooms">Rooms & Rates</a></li>
+                        <li><a href="./index.html#gallery">Gallery</a></li>
+                        <li><a href="./index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- EXPERIENCES -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title-sm">Experiences</h5>
+                    <ul class="footer-links">
+                        <li><a href="./index.html#go-ape-section">Go Ape Aberfoyle</a></li>
+                        <li><a href="./index.html#bistro">Bistro</a></li>
+                        <li><a href="./index.html#experiences">Experiences</a></li>
+                        <li><a href="./booknow.html">Book a Stay</a></li>
+
+                    </ul>
+                </div>
+
+                <!-- CONTACT -->
+                <div class="col-lg-4">
+                    <h5 class="footer-title-sm">Contact Us</h5>
+
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            16 Main Street, Aberfoyle,<br>
+                            Stirling, FK8 3UG, Scotland
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone-fill"></i>
+                            <a href="tel:+441877382573">+44 1877 382573</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope-fill"></i>
+                            <a href="mailto:bookings@aberfoyleinn.com">
+                                bookings@aberfoyleinn.com
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BOTTOM BAR -->
+        <div class="footer-bottom">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="mb-2 mb-md-0">
+                    © 2025 Aberfoyle Inn. All Rights Reserved.
+                </p>
+                <p class="mb-0">
+                    Designed with ❤️ by
+                    <a href="https://azenix.co.uk" target="_blank" rel="noopener noreferrer" class="footer-link">
+                        Azenix
+                    </a>
+                </p>
+            </div>
+        </div>
+
+    </footer>
 </body>
 
 </html>
