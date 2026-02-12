@@ -66,7 +66,9 @@
 /* DETAILS */
 .experience-details {
   padding: 90px 0;
-  background: var(--bg);
+  /* background: var(--bg); */
+  background: radial-gradient(circle at 20% 20%, #00c6ff44, transparent 40%), radial-gradient(circle at 80% 80%, #f7971e55, transparent 40%), linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+
 }
 
 .details-grid {
@@ -87,9 +89,18 @@
 
 /* STATS */
 .experience-stats {
-  padding: 60px 0;
-  background: var(--card);
+  padding: 80px 0;
+
+  background: 
+    linear-gradient(rgba(11,18,32,0.75), rgba(11,18,32,0.75)),
+    url("../../images/zip-three.webp");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* makes it fixed */
 }
+
 
 .stats-grid {
   display: grid;
@@ -112,7 +123,8 @@
 .experience-stay {
   padding: 100px 20px;
   text-align: center;
-  background: linear-gradient(135deg, var(--secondary), var(--bg));
+  /* background: linear-gradient(135deg, var(--secondary), var(--bg)); */
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
 }
 
 .experience-stay h2 {
