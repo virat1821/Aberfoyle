@@ -191,7 +191,7 @@ body {
   <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top glass-nav">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#"> <img class="logo" src="./images/Logo.png" alt="logo" srcset=""></a>
+            <a class="navbar-brand fw-bold" href="#"> <img class="logo" src="./images/logo.png" alt="logo" srcset=""></a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -350,8 +350,8 @@ body {
                         </li>
                         <li>
                             <i class="bi bi-envelope-fill"></i>
-                            <a href="mailto:bookings@aberfoyleinn.com">
-                                bookings@aberfoyleinn.com
+                            <a href="mailto: booking@aberfoyleinn.uk ">
+                                 booking@aberfoyleinn.uk 
                             </a>
                         </li>
                     </ul>
@@ -379,7 +379,9 @@ body {
     </footer>
 
       <script src="./webapps/js/index.js"></script>
-    <script>
+
+
+    <!-- <script>
 function sendToWhatsApp(event) {
   event.preventDefault();
 
@@ -392,7 +394,7 @@ function sendToWhatsApp(event) {
   const message = document.getElementById("message").value;
 
   const phoneNumber = "447734384854"; 
-  // 👆 REPLACE with your WhatsApp number (UK format, no +)
+ 
 
   const text = `
 Hello Aberfoyle Inn 👋
@@ -413,8 +415,67 @@ Special Requests: ${message || "None"}
 
   window.open(whatsappURL, "_blank");
 }
+    </script> -->
+
+   <script>
+function sendToWhatsApp(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const checkin = document.getElementById("checkin").value;
+  const checkout = document.getElementById("checkout").value;
+  const guests = document.getElementById("guests").value;
+  const room = document.getElementById("room").value;
+  const message = document.getElementById("message").value;
+
+  const phoneNumber = "447734384854"; // UK format without +
+
+  const text = `
+Hello Aberfoyle Inn 👋
+
+I would like to make a booking.
+
+Name: ${name}
+Email: ${email}
+Check-in: ${checkin}
+Check-out: ${checkout}
+Guests: ${guests}
+Room Type: ${room}
+Special Requests: ${message || "None"}
+`;
+
+  // ✅ SEND EMAIL USING WEB3FORMS
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      access_key: "e5ece5e4-5a51-43d3-b8bc-66ff3337da6e", // 🔥 Replace with your key
+      name: name,
+      email: email,
+      checkin: checkin,
+      checkout: checkout,
+      guests: guests,
+      room: room,
+      message: message
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log("Email Sent", data);
+  })
+  .catch(error => {
+      console.log("Email Error", error);
+  });
+
+  // ✅ OPEN WHATSAPP
+  const encodedText = encodeURIComponent(text);
+  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+  window.open(whatsappURL, "_blank");
+}
 </script>
-
-
 </body>
 </html>
