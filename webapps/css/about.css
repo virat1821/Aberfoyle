@@ -36,7 +36,7 @@ body {
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding-top: 85px;
+     padding-top: 125px;
 }
 
 .hero-overlay {

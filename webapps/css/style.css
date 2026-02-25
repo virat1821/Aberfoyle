@@ -35,7 +35,7 @@
 
 /* Navbar height & alignment */
 .navbar{
-  padding: 14px 0;
+  padding: 3px 0;
 }
 
 .navbar .container{
@@ -619,7 +619,7 @@ body{
 
 .btn-book {
   display: inline-block;
-  margin-top: 15px;
+  /* margin-top: 15px; */
   background: #ff9800;
   color: #000;
   padding: 10px 22px;
