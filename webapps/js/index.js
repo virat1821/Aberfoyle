@@ -7,6 +7,7 @@
 
 
 
+  // navbar
 document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll(".navbar-collapse .nav-link");
   const navbarCollapse = document.querySelector(".navbar-collapse");
@@ -21,6 +22,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+
+// modal
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    const modal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+    modal.show();
+  }, 2000);
+});
 
 
 

@@ -26,8 +26,9 @@
 
     <!-- Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
     <link rel="stylesheet" href="./webapps/css/style.css">
+
+
 </head>
 
 <body>
@@ -1034,6 +1035,42 @@
     </div>
 
 
+    <!-- Welcome Modal -->
+<div class="modal fade" id="welcomeModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content welcome-modal">
+
+      <div class="modal-body text-center">
+
+        <button type="button" class="btn-close btn-close-white modal-close"
+          data-bs-dismiss="modal"></button>
+
+        <img src="images/logo.png" class="welcome-img" alt="Aberfoyle Inn">
+
+        <h3 class="mt-4">Welcome to Aberfoyle Inn</h3>
+
+        <p class="mt-2">
+  Experience comfort, pet-friendly stays, nature and warm Scottish hospitality in the heart of Scotland.
+</p>
+        <div class="mt-4 d-flex justify-content-center gap-3">
+          <button class="btn btn-explore"
+            onclick="window.location.href='booknow.html'">
+           Book Your Stay
+          </button>
+
+          <button class="btn btn-outline-light"
+            data-bs-dismiss="modal">
+            No, Thanks
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -1372,6 +1409,7 @@ form.addEventListener("submit", async function (e) {
     </script>
     <!-- Firebase SDK END
       -->
+
 
 
 </body>

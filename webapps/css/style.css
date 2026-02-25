@@ -2571,3 +2571,72 @@ body.dark {
   background: var(--accent);
   color: var(--bg);
 }
+
+
+/* MODAL STYLE */
+/* BIGGER MODAL */
+.welcome-modal {
+  background: var(--bg);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text);
+  padding: 20px 10px;
+  overflow: hidden;
+}
+
+/* BIGGER IMAGE */
+.welcome-img {
+  width: 100%;
+  height: 300px; /* increased */
+  object-fit: contain; /* since logo */
+  border-radius: 16px;
+  margin-top: 10px;
+}
+
+/* TITLE */
+.welcome-modal h3 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* TEXT */
+.welcome-modal p {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* BUTTONS */
+.btn-explore {
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  color: var(--bg);
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 40px;
+  font-size: 1rem;
+}
+
+.btn-explore:hover {
+  opacity: 0.9;
+}
+
+/* CLOSE BUTTON */
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  opacity: 0.8;
+}
+
+/* MOBILE ADJUSTMENT */
+@media (max-width: 768px) {
+  .welcome-img {
+    height: 200px;
+  }
+
+  .welcome-modal h3 {
+    font-size: 1.5rem;
+  }
+}
+/* MODAL STYLE end */
