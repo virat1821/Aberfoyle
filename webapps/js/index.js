@@ -34,4 +34,29 @@ window.addEventListener("load", function () {
 
 
 
+// cookie consent
+document.addEventListener("DOMContentLoaded", function () {
+
+  const banner = document.getElementById("cookieBanner");
+  const acceptBtn = document.getElementById("cookieAccept");
+  const declineBtn = document.getElementById("cookieDecline");
+
+  // Show banner if no consent stored
+  if (!localStorage.getItem("cookieConsent")) {
+    banner.style.display = "block";
+  }
+
+  acceptBtn.addEventListener("click", function () {
+    localStorage.setItem("cookieConsent", "accepted");
+    banner.style.display = "none";
+  });
+
+  declineBtn.addEventListener("click", function () {
+    localStorage.setItem("cookieConsent", "rejected");
+    banner.style.display = "none";
+  });
+
+});
+
+
 
